@@ -1,4 +1,4 @@
-package com.stu.buffer;
+package com.stu.buffer_2;
 
 import java.nio.ByteBuffer;
 

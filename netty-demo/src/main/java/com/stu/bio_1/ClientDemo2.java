@@ -1,4 +1,4 @@
-package com.stu.bio;
+package com.stu.bio_1;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @Author wangyixing
  * @Description
  */
-public class ClientDemo {
+public class ClientDemo2 {
     public static void main(String[] args) throws Exception {
         while (true) {
             Socket socket = new Socket("127.0.0.1", 9999);

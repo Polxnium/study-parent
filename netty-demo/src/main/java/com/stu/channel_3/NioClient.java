@@ -1,4 +1,4 @@
-package com.stu.channel;
+package com.stu.channel_3;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,16 +14,16 @@ public class NioClient {
     public static void main(String[] args) throws IOException {
         //打开一个客户端通道
         SocketChannel socketChannel = SocketChannel.open();
-        //连接服务器IP和端口
-        socketChannel.connect(new InetSocketAddress("127.0.0.1", 9999));
+        //绑定服务器HOST和PORT
+        socketChannel.connect(new InetSocketAddress("127.0.0.1", 8888));
         //写入数据
-        socketChannel.write(ByteBuffer.wrap("我要回家了".getBytes(StandardCharsets.UTF_8)));
-
+        socketChannel.write(ByteBuffer.wrap("今天给我加班".getBytes(StandardCharsets.UTF_8)));
+        //创建一个指定长度的ByteBuffer缓冲区
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        //读取服务器返回的数据
+        //读取服务器写入到通道的数据
         int read = socketChannel.read(byteBuffer);
-        System.out.println("服务端消息:"+new String(byteBuffer.array(),0,read,StandardCharsets.UTF_8));
-        //释放资源
-        socketChannel.close();
+        String data = new String(byteBuffer.array(), 0, read, StandardCharsets.UTF_8);
+        System.out.println(String.format("服务端消息:[%s]",data));
+        socketChannel.close();//释放资源
     }
 }

@@ -1,4 +1,4 @@
-package com.stu.bio;
+package com.stu.bio_1;
 
 import java.io.IOException;
 import java.io.InputStream;
