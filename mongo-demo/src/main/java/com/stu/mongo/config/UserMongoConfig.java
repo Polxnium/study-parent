@@ -15,25 +15,22 @@ import javax.annotation.Resource;
  * @author 86177
  */
 @Configuration
-public class OrderMongoConfig {
+public class UserMongoConfig {
 
-    @Resource(name = "orderMongoProperties")
+    @Resource(name = "userMongoProperties")
     private MongoProperties mongoProperties;
 
-    @Primary
-    @Bean(name = "orderDbFactory")
+    @Bean(name = "userDbFactory")
     public MongoDbFactory dbFactory() {
         return new SimpleMongoClientDbFactory(mongoProperties.getUri());
     }
 
-    @Primary
-    @Bean(name = "orderMongo")
+    @Bean(name = "userMongo")
     public MongoTemplate mongoTemplate() {
         return new MongoTemplate(this.dbFactory());
     }
 
-    @Primary
-    @Bean(name = "orderMongoTransaction")
+    @Bean(name = "userMongoTransaction")
     public MongoTransactionManager transactionManager(){
         return new MongoTransactionManager(this.dbFactory());
     }

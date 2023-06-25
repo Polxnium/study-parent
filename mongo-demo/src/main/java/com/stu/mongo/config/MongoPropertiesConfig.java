@@ -19,4 +19,10 @@ public class MongoPropertiesConfig {
         return new MongoProperties();
     }
 
+    @Bean(name="userMongoProperties")
+    @ConfigurationProperties(prefix="spring.data.mongodb.user")
+    public MongoProperties userProperties() {
+        return new MongoProperties();
+    }
+
 }

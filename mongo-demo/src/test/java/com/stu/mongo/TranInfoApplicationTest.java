@@ -2,7 +2,6 @@ package com.stu.mongo;
 
 import com.stu.mongo.entity.TranInfo;
 import com.stu.mongo.service.TranInfoService;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @SpringBootTest
-class MongoDemoApplicationTests {
+class TranInfoApplicationTest {
 
     @Autowired
     private TranInfoService tranInfoService;
