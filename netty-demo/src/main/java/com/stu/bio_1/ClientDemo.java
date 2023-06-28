@@ -26,8 +26,9 @@ public class ClientDemo {
             //从连接中取出输入流，从而获取消息
             InputStream inputStream = socket.getInputStream();
             byte[] bytes = new byte[1024];
+            //没有服务端发送的数据可以读取时read()会一直阻塞
             int read = inputStream.read(bytes);
-            System.out.println(String.format("Socket收到消息:%s", new String(bytes, 0, read)));
+            System.out.println(String.format("客户端收到消息:%s", new String(bytes, 0, read)));
             socket.close();
         }
     }

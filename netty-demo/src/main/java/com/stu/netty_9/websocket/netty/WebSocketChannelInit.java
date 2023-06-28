@@ -18,10 +18,10 @@ import org.springframework.stereotype.Component;
 public class WebSocketChannelInit extends ChannelInitializer {
 
     @Autowired
-    NettyConfig nettyConfig;
+    private NettyConfig nettyConfig;
 
     @Autowired
-    WebSocketHandler webSocketHandler;
+    private WebSocketHandler webSocketHandler;
 
     @Override
     protected void initChannel(Channel channel) throws Exception {
@@ -37,6 +37,5 @@ public class WebSocketChannelInit extends ChannelInitializer {
         pipeline.addLast(new WebSocketServerProtocolHandler(nettyConfig.getPath()));
         //自定义处理handler
         pipeline.addLast(webSocketHandler);
-
     }
 }

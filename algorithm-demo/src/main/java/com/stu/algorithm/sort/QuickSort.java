@@ -8,11 +8,32 @@ package com.stu.algorithm.sort;
  * 两个部分，这种思路就叫作分治法。
  *
  * 基准元素，英文是pivot，在分治过程中，以基准元素为中心，把其他元素移动到它的左右两边
- * 可以随机选择一个元素作为基准元素，并且让基准元素和数组首元素交换位置，此时基准元素位于第一个元素
+ * 0. 可以随机选择一个元素作为基准元素，并且让基准元素和数组首元素交换位置，此时基准元素位于第一个元素
  *
- * 选定了基准元素以后，要把其他元素中小于基准元素的都交换到基准元素一边，大于基准元素的都交换到基准元素另一边。
+ * 比基准元素小的放到左侧，比基准元素大的放到右侧。
+ *
+ * 元素的交换：
+ * 一、双边循环法
+ * 1. 两个指针left和right，指向数列的最左和最右两个元素
+ * 2. 从right开始，该元素和基准元素做比较。如果>=pivot，则指针向左移动；如果<pivot，则指针不动；
+ * 3. 从left开始，该元素和基准元素做比较。如果<=pivot，则指针向右移动；如果>pivot，则指针不动；
+ * 4. right和left指针交换值
  *
  * @author 86177
  */
 public class QuickSort {
+
+    public static void main(String[] args) {
+
+    }
+
+    /**
+     * 双边循环法
+     * @param array
+     * @return
+     */
+    public static int partition(int[] array) {
+        int pivot = array[0];
+        return 0;
+    }
 }

@@ -32,11 +32,12 @@ public class NioServer {
             //创建一个指定长度的ByteBuffer缓冲区
             ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
             //把客户端的通道数据放入缓冲区，read是正数表示读到有效字节数，0没有读到数据，-1读到末尾
+            //没有客户端发送的数据可以读取时read()会一直阻塞
             int read = socketChannel.read(byteBuffer);
             String rec = new String(byteBuffer.array(),0,read,StandardCharsets.UTF_8);
             System.out.println(String.format("客户端消息:[%s]",rec));
             //给客户端回复数据
-            ByteBuffer wrap = ByteBuffer.wrap("服务端收到了".getBytes(StandardCharsets.UTF_8));
+            ByteBuffer wrap = ByteBuffer.wrap("Server收到了".getBytes(StandardCharsets.UTF_8));
             socketChannel.write(wrap);
             socketChannel.close();//释放资源
         }

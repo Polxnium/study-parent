@@ -15,10 +15,7 @@ import java.util.concurrent.*;
  */
 public class ServerDemo {
     public static void main(String[] args) throws Exception {
-        ExecutorService threadPool = new ThreadPoolExecutor(5, 5, 1,
-                TimeUnit.HOURS, new ArrayBlockingQueue<>(10),
-                Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.CallerRunsPolicy());
+        ExecutorService threadPool = new ThreadPoolExecutor(8, 16, 1, TimeUnit.HOURS, new ArrayBlockingQueue<>(100), Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
         ServerSocket serverSocket = new ServerSocket(9999);
         while (true) {
             //ServerSocket监听客户端Socket, 没有客户端连接时会一直阻塞
@@ -40,12 +37,12 @@ public class ServerDemo {
             //从连接中取出输入流，从而获取信息
             InputStream inputStream = socket.getInputStream();
             byte[] bytes = new byte[1024];
-            //没有数据可读时read()会一直阻塞
+            //连接后没有客户端发送的数据可以读取时read()会一直阻塞
             int read = inputStream.read(bytes);
             System.out.println(String.format("客户端数据:%s", new String(bytes, 0, read)));
             //从连接中取出输出流，从而发送消息
             OutputStream outputStream = socket.getOutputStream();
-            outputStream.write("ServerSocket收到了".getBytes());
+            outputStream.write("服务端收到了".getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {

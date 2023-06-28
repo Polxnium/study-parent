@@ -24,7 +24,6 @@ $(function () {
     ws.onclose = function (){
         console.log("连接关闭")
     }
-
     ws.onerror = function (){
         console.log("连接异常")
     }

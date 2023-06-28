@@ -31,7 +31,7 @@ public class NettyWebSocketServer implements Runnable {
     private EventLoopGroup workerGroup = new NioEventLoopGroup();
 
     /**
-     * 资源关闭--在容器销毁是关闭
+     * 资源关闭-在容器销毁时关闭
      */
     @PreDestroy
     public void close() {
@@ -47,6 +47,7 @@ public class NettyWebSocketServer implements Runnable {
             serverBootstrap
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.DEBUG))
+                    // 自定义业务处理Handler
                     .childHandler(webSocketChannelInit);
 
             ChannelFuture channelFuture = serverBootstrap.bind(nettyConfig.getPort()).sync();

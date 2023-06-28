@@ -12,7 +12,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
 
 /**
  * @Author wangyixing
- * @Description Netty聊天室服务端
+ * @Description Netty Http服务端
  */
 public class NettyHttpServer {
 
@@ -25,10 +25,10 @@ public class NettyHttpServer {
     public void run() throws InterruptedException {
         EventLoopGroup bossGroup = null;
         EventLoopGroup workerGroup = null;
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
         try {
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup();
-            ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 128)
@@ -42,7 +42,7 @@ public class NettyHttpServer {
                         }
                     });
             ChannelFuture future = serverBootstrap.bind(port).sync();
-            System.out.println("===>>> HTTP服务端启动成功 <<<===");
+            System.out.println("===>>> HTTP服务器启动成功 <<<===");
             future.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

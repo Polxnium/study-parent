@@ -19,12 +19,12 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<HttpObje
 
     /**
      * 通道读取事件（通道读事件）
-     * @param channelHandlerContext
+     * @param ctx
      * @param httpObject
      * @throws Exception
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, HttpObject httpObject) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, HttpObject httpObject) throws Exception {
         if (httpObject instanceof HttpRequest) {
             DefaultHttpRequest request = (DefaultHttpRequest) httpObject;
             System.out.println("浏览器请求路径:" + request.uri());
@@ -43,7 +43,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<HttpObje
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html;charset=utf-8");
             response.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
             //写入HTTP响应
-            channelHandlerContext.writeAndFlush(response);
+            ctx.writeAndFlush(response);
         }
     }
 }
