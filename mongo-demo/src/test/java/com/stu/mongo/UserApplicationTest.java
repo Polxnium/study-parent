@@ -21,7 +21,7 @@ class UserApplicationTest {
 
     @Test
     @Transactional(transactionManager = "userMongoTransaction")
-    protected void testTransaction() throws Exception {
+    public void testTransaction() throws Exception {
         User user = new User();
         user.setId(new Random().nextInt());
         user.setUsername("wang");
@@ -32,8 +32,6 @@ class UserApplicationTest {
         bankCard.setUserId(user.getId());
         bankCard.setCardNo("1323456798913");
         bankCardService.insert(bankCard);
-
-        throw new Exception("");
     }
 
 }
